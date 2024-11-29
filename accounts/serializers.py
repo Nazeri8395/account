@@ -2,16 +2,16 @@ from rest_framework import serializers
 from .models import CustomUser, Customer
 
 class CustomerSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(source='user.username', required=True)  # فقط خواندنی
+    username = serializers.CharField(source='user.username', )  # فقط خواندنی
     email = serializers.EmailField(source='user.email', required=True)
     first_name = serializers.CharField(source='user.first_name')
     last_name = serializers.CharField(source='user.last_name')
-    password = serializers.CharField(write_only=True, required=True)
+    password = serializers.CharField(source='user.password',)
 
     class Meta:
         model = Customer
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'password', 'phone_number', 'birth_date']
-        
+        fields = ['id', 'username', 'password', 'email', 'first_name', 'last_name', 'password', 'phone_number', 'birth_date']
+        read_only_fields = ['username', 'password', ]
         
     def create(self, validated_data):
         user_data = validated_data.pop('user')
