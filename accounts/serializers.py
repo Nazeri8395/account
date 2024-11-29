@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import CustomUser, Customer
 
 class CustomerSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(source='user.username', read_only=True)  # فقط خواندنی
+    username = serializers.CharField(source='user.username', required=True)  # فقط خواندنی
     email = serializers.EmailField(source='user.email', required=True)
     first_name = serializers.CharField(source='user.first_name')
     last_name = serializers.CharField(source='user.last_name')
