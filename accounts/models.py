@@ -18,6 +18,10 @@ class Customer(models.Model):
     	return  self.user.first_name
  
     @property
+    def  password(self):
+    	return  self.user.password
+ 
+    @property
     def  last_name(self):
     	return   self.user.last_name
     
